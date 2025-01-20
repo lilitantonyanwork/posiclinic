@@ -686,10 +686,15 @@ footer iframe{
  .show-sub{
      display: block;
      position: absolute;
+     max-width: 300px!important;
+     width: 100%;
      left: 100%;
      top: 0;
      background: #f6f6f6!important;
  }
+.menu-item  .show-sub .menu-link{
+    white-space: wrap;
+}
 .menu-item.has-sub{
     position: relative;
 }
@@ -737,7 +742,7 @@ footer iframe{
 .menu-sub .menu-item:hover > .menu-link{
    color: #18a6a0;
 }
-.menu-item{
+.menu > .menu-item{
     position: relative;
 }
 .menu-item .menu-link{
@@ -1110,10 +1115,25 @@ textarea{
 
     .menu {
         flex-direction: column;
-        gap: 10px;
+        gap: 15px;
         margin: 0;
         height: auto;
         align-items: flex-start;
+    }
+    .menu-link.active{
+        opacity: .7;
+    }
+    .menu-item .menu-sub{
+        height: auto!important;
+    }
+    .menu-item > .menu-sub:before{
+        display: none;
+    }
+    .aside .menu > .menu-item > .menu-link{
+        color: #222222;
+        font-size: 20px;
+        font-weight: 400;
+        font-family: 'Manrope';
     }
     .aside .menu-sub{
         position: relative;
@@ -1123,13 +1143,18 @@ textarea{
         left: auto;
         transform: none;
         padding-top: 10px;
-        max-width: 100%;
+        max-width: 100%!important;
         min-width: 100%;
+        padding-left: 26px;
+
+    }
+    .menu-sub .menu-item:hover > .menu-link{
+        color: #222222;!important;
     }
     .menu-item.has-sub > .menu-sub .menu-item{
         padding-left: 0;
         padding-bottom: 10px;
-        padding-right: 100px;
+        padding-right: 20px;
     }
     .aside .menu-sub{
         background: transparent!important;
@@ -1416,6 +1441,7 @@ textarea{
         width: 30px;
         height: 30px;
     }
+
 }
 @media screen and (max-width: 700px){
     .container{

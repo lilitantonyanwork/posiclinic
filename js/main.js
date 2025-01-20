@@ -5,8 +5,9 @@ $(function (){
         responsiveClass:true,
         responsive:{
             0:{
-                items:1,
-                nav:false
+                items:4,
+                nav:false,
+                margin:10,
             },
             600:{
                 items:3,
@@ -77,7 +78,7 @@ $(function (){
         $('.tab-'+ index).removeClass('dn').addClass('active')
     })
 
-    $( ".menu-item.has-sub" )
+    $( ".menu-item.has-sub > .menu-link" )
         .on( "mouseover", function() {
             $( this ).find( "> .menu-link" ).siblings('.menu-sub').addClass('show');
         } )
@@ -86,12 +87,14 @@ $(function (){
 
         } ).off().on('click',function (e){
         e.preventDefault();
-        $('.menu-sub').removeClass('show');
-        if( !$( this ).find( "> .menu-link" ).siblings('.menu-sub').hasClass('show')){
+        console.log('ggggg')
 
-            $( this ).find( "> .menu-link" ).siblings('.menu-sub').addClass('show');
+        if( !$( this ).siblings('.menu-sub').hasClass('show')){
+            console.log('mtavvvv')
+            $('.menu-sub').removeClass('show');
+            $( this ).siblings('.menu-sub').addClass('show');
         } else{
-            $( this ).find( "> .menu-link" ).siblings('.menu-sub').removeClass('show');
+            $( this ).siblings('.menu-sub').removeClass('show');
 
         }
     })
@@ -104,16 +107,31 @@ $(function (){
                 $(this).find(".menu-link").siblings('.menu-sub').removeClass('show-sub');
         } ).off().on('click',function (e){
         e.preventDefault();
-        $('.menu-sub').removeClass('show-sub');
-        if( ! $(this).find(".menu-link").siblings('.menu-sub').hasClass('show-sub')){
 
+        if( ! $(this).find(".menu-link").siblings('.menu-sub').hasClass('show-sub')){
+            console.log('mtttt')
+            $('.menu-sub').removeClass('show-sub');
             $( this ).find( "> .menu-link" ).siblings('.menu-sub').addClass('show-sub');
+            $( this ).find( "> .menu-link" ).siblings('.menu-sub').css('height', $( this ).parent().outerHeight())
 
         } else{
             $(this).find(".menu-link").siblings('.menu-sub').removeClass('show-sub');
 
         }
     })
+
+    window.addEventListener('click', function(e){
+        if (document.getElementById('menu').contains(e.target)){
+            // Clicked in box
+        } else{
+            if($(window).width() > 991){
+                console.log('mta')
+                $('.menu-sub').removeClass('show-sub');
+                $('.menu-sub').removeClass('show');
+            }
+
+        }
+    });
 
     function getIp(callback) {
         fetch('ipinfo.io/140.82.183.34?token=66e2f39b20a2bd', { headers: { 'Accept': 'application/json' }})
